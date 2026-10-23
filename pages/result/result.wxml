@@ -1,0 +1,67 @@
+<view class="result-page">
+  <image class="result-bg" src="{{backgroundSrc}}" mode="aspectFill" data-cloud-field="backgroundSrc" binderror="cloudImageError"></image>
+  <view class="result-overlay"></view>
+  <image class="result-sparkles" src="/assets/decorations/sparkles.png" mode="aspectFill"></image>
+  <view class="result-glow"></view>
+  <view class="result-bottom-shade"></view>
+
+  <scroll-view class="result-scroll" scroll-y="true">
+    <view wx:if="{{hasResult}}" class="result-shell">
+      <view class="result-header">
+        <view class="result-kicker">✦ YOUR ANIME SOUL ✦</view>
+        <view class="result-mbti">{{resultMbti}}</view>
+        <view class="result-title">{{bestMatch.title}}</view>
+        <view wx:if="{{bestMatch.subtitle && bestMatch.subtitle !== '等待下一次探索'}}" class="result-subtitle">{{bestMatch.subtitle}}</view>
+        <view class="result-context">你的 MBTI 原创角色档案</view>
+      </view>
+
+      <view class="character-panel">
+        <view class="character-frame">
+          <image wx:if="{{imageSrc}}" class="character-image" src="{{imageSrc}}" mode="aspectFit" binderror="imageError"></image>
+          <view wx:else class="character-placeholder">✦</view>
+        </view>
+        <view class="character-shadow"></view>
+      </view>
+
+      <view class="glass-card identity-card">
+        <view class="section-label">你最像</view>
+        <view class="character-name">{{bestMatch.name}}</view>
+        <view class="character-anime">《{{bestMatch.anime}}》</view>
+        <view class="match-badge"><text class="badge-label">人格相似度</text><text class="badge-value">{{bestMatch.similarity}}<text class="badge-unit">%</text></text></view>
+        <view class="tag-list"><view wx:for="{{bestMatch.tags}}" wx:key="*this" class="tag">{{item}}</view></view>
+        <view class="identity-line">{{bestMatch.resultLine}}</view>
+      </view>
+
+      <view class="glass-card description-card">
+        <view class="section-eyebrow">PERSONALITY STORY</view>
+        <view class="section-title">你的人格解析</view>
+        <view class="description-text"><view wx:for="{{descriptionParagraphs}}" wx:key="index" class="description-paragraph">{{item}}</view></view>
+      </view>
+      <view class="quote-card"><view class="quote-mark">“</view><view class="quote-text">{{bestMatch.quote}}</view></view>
+
+      <view class="glass-card traits-card">
+        <view class="section-eyebrow">YOUR PERSONALITY PROFILE</view>
+        <view class="section-title">人格能力</view>
+        <view class="section-copy">八个维度，勾勒你的独特轮廓</view>
+        <view class="traits-grid">
+          <view wx:for="{{traitItems}}" wx:key="key" class="trait-row">
+            <view class="trait-top"><view class="trait-name">{{item.label}}</view><view class="trait-value">{{item.value}}<text>/100</text></view></view>
+            <view class="trait-track"><view class="trait-fill" style="width: {{item.value}}%;"></view></view>
+          </view>
+        </view>
+      </view>
+
+      <view class="glass-card top-card">
+        <view class="section-eyebrow">SOUL CONNECTIONS</view>
+        <view class="section-title">Top 3 相近角色</view>
+        <view class="section-copy">不同的角色，也藏着与你相似的一面</view>
+        <view wx:for="{{topMatches}}" wx:key="id" class="top-row"><view class="top-rank">0{{item.rank}}</view><view class="top-info"><view class="top-name">{{item.name}}</view><view class="top-anime">《{{item.anime}}》</view><view class="top-mbti">{{item.mbti}}</view></view><view class="top-score">{{item.similarity}}<text>%</text></view></view>
+      </view>
+
+      <view class="share-intro">把你的原创角色，收藏成专属海报</view>
+      <view class="result-actions"><button class="action-button secondary-button" bind:tap="retake" hover-class="action-pressed" hover-start-time="0">再测一次</button><button class="action-button primary-button" bind:tap="openPoster" hover-class="action-pressed" hover-start-time="0">生成分享海报 <text class="action-spark">✦</text></button></view>
+    </view>
+
+    <view wx:else class="empty-state"><view class="empty-mark">✦</view><view class="empty-title">还没有测试结果</view><view class="empty-copy">完成一次测试后，你的二次元人格会在这里出现。</view><button class="action-button primary-button empty-button" bind:tap="backHome">返回首页</button></view>
+  </scroll-view>
+</view>

@@ -1,0 +1,10 @@
+{
+  "compileType": "miniprogram",
+  "projectname": "星屿纪行人格测试（公开演示版）",
+  "appid": "touristappid",
+  "setting": {
+    "es6": true,
+    "postcss": true,
+    "minified": true
+  }
+}

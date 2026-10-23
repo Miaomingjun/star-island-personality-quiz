@@ -1,0 +1,14 @@
+page {
+  background: #f7f3ff;
+  color: #2c2852;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  box-sizing: border-box;
+}
+
+view, text, button, image {
+  box-sizing: border-box;
+}
+
+button::after {
+  border: 0;
+}

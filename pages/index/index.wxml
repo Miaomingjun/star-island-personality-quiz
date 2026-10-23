@@ -1,0 +1,35 @@
+<view class="home-page">
+  <image class="home-bg" src="{{backgroundSrc}}" mode="aspectFill" data-cloud-field="backgroundSrc" binderror="cloudImageError"></image>
+  <view class="home-overlay"></view>
+  <image class="decorative-overlay home-sparkles" src="/assets/decorations/sparkles.png" mode="aspectFill"></image>
+
+  <view class="home-content">
+    <view class="home-heading">
+      <view class="eyebrow"><text class="brand-star">✦</text> YOUR ANIME SOUL <text class="brand-star">✦</text></view>
+      <view class="title-cn">发现你的二次元灵魂</view>
+      <view class="subtitle">通过 MBTI 测试</view>
+      <view class="subtitle secondary">找到与你契合的原创角色</view>
+    </view>
+
+    <view class="hero-stage">
+      <view class="halo halo-back"></view>
+      <view class="halo halo-front"></view>
+      <view class="hero-frame"></view>
+      <image class="hero-character" src="{{heroSrc}}" mode="aspectFit" data-cloud-field="heroSrc" binderror="cloudImageError"></image>
+      <view class="hero-glow"></view>
+      <view class="hero-star star-left">✧</view>
+      <view class="hero-star star-right">✦</view>
+      <view class="hero-caption">你的故事，藏着另一种可能</view>
+    </view>
+
+    <view class="home-action">
+      <view class="test-details"><text>12 道轻问答</text><text class="detail-dot">·</text><text>16 种人格</text><text class="detail-dot">·</text><text>32 位原创角色</text></view>
+      <button class="start-button" bindtap="startTest" hover-class="start-button-pressed" hover-start-time="0" hover-stay-time="120">
+        <text class="button-spark">✦</text>
+        <text>立即测试</text>
+        <text class="button-arrow">→</text>
+      </button>
+      <view class="hint">开启你的原创人格角色档案</view>
+    </view>
+  </view>
+</view>

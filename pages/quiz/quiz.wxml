@@ -1,0 +1,49 @@
+<view class="quiz-page">
+  <image class="quiz-bg" src="{{backgroundSrc}}" mode="aspectFill" data-cloud-field="backgroundSrc" binderror="cloudImageError"></image>
+  <view class="quiz-overlay"></view>
+  <image class="decorative-overlay quiz-sparkles" src="/assets/decorations/sparkles.png" mode="aspectFill"></image>
+
+  <view class="quiz-content">
+    <view class="quiz-brand">✦ YOUR ANIME SOUL ✦</view>
+    <view class="quiz-topbar">
+      <view class="back-button" bindtap="goBack" hover-class="back-button-pressed" hover-start-time="0">‹</view>
+      <view class="progress-copy"><text class="progress-label">第 </text>{{displayNumber}} <text>/ {{total}} 题</text></view>
+      <view class="top-orb">✦</view>
+    </view>
+    <view class="progress-track">
+      <view class="progress-fill" style="width: {{progressPercent}}%;"></view>
+      <view class="progress-spark" style="left: calc({{progressPercent}}% - 10rpx);"></view>
+    </view>
+
+    <view class="question-area {{isTransitioning ? 'is-leaving' : ''}}">
+      <view class="question-card">
+        <view class="card-corner corner-left">✦</view>
+        <view class="card-corner corner-right">✧</view>
+        <view class="question-number">SOUL QUESTION <text>· {{displayNumber}}</text></view>
+        <view class="question-text">{{currentQuestion.question}}</view>
+        <view class="question-divider"></view>
+        <view class="question-tip">选择最贴近你直觉的答案</view>
+      </view>
+
+      <view class="options-list">
+        <view
+          wx:for="{{currentQuestion.options}}"
+          wx:key="key"
+          class="option-card option-{{item.key}} {{selectedKey === item.key ? 'selected' : ''}}"
+          data-key="{{item.key}}"
+          bindtap="selectOption"
+          hover-class="{{isTransitioning ? 'none' : 'option-pressed'}}"
+          hover-start-time="0"
+          hover-stay-time="100"
+        >
+          <view class="option-key">{{item.key}}</view>
+          <view class="option-copy">{{item.text}}</view>
+          <view class="option-indicator">{{selectedKey === item.key ? '✓' : '✧'}}</view>
+          <view class="option-glow"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="quiz-footer">每一次选择，都是认识自己的星光</view>
+  </view>
+</view>

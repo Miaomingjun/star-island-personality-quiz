@@ -1,0 +1,16 @@
+# Local developer/account settings
+project.private.config.json
+*.local.json
+.env
+.env.*
+!.env.example
+
+# Dependencies, caches and exports
+node_modules/
+dist/
+tmp/
+temp/
+automation/
+*.zip
+*.log
+.DS_Store

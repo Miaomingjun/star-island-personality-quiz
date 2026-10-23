@@ -1,0 +1,29 @@
+<view class="poster-page">
+  <view class="poster-stage">
+    <image class="poster-backdrop" src="{{backgroundSrc}}" mode="aspectFill" data-cloud-field="backgroundSrc" binderror="cloudImageError"></image>
+    <view class="poster-backdrop-shade"></view>
+    <view class="poster-preview-viewport" style="{{previewViewportStyle}}">
+      <image class="poster-preview {{previewVisible ? 'is-visible' : ''}}" src="{{previewPath}}" mode="{{previewMode}}" bind:load="onPosterImageLoad" bind:error="onPosterImageError"></image>
+    </view>
+    <view wx:if="{{hasResult && (isDrawing || !previewVisible) && !errorMessage}}" class="poster-transition">
+      <view class="poster-spinner"></view>
+    </view>
+    <view wx:if="{{hasResult && errorMessage}}" class="poster-state">
+      <view class="state-mark">!</view>
+      <view class="state-title">海报生成失败</view>
+      <view class="state-copy">{{errorMessage}}</view>
+      <button class="poster-button primary" bind:tap="retry">重新生成</button>
+    </view>
+  </view>
+  <view wx:if="{{hasResult}}" class="poster-actions">
+    <button class="poster-button primary" disabled="{{!isReady}}" bind:tap="savePoster"><text class="button-icon">↧</text>保存到相册</button>
+    <button class="poster-button secondary" bind:tap="backResult"><text class="button-icon">←</text>返回结果</button>
+  </view>
+  <view wx:if="{{resultChecked && !hasResult}}" class="empty-state">
+    <view class="state-mark">✦</view>
+    <view class="state-title">还没有测试结果</view>
+    <view class="state-copy">完成一次测试后，才能生成专属海报。</view>
+    <button class="poster-button primary" bind:tap="backHome">返回首页</button>
+  </view>
+  <canvas wx:if="{{isDrawing}}" type="2d" id="posterCanvas" class="poster-canvas"></canvas>
+</view>
